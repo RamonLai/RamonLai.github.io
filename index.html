@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<TITLE>如何使用 jquery？</TITLE>
+<!--CSS 程式碼由此開始-->
+<style>
+body
+{
+margin: 30px;
+}
+
+.content-set
+{
+font-size: 12pt;
+color: Navy;
+}
+
+.author-set
+{
+font-style: italic;
+border: 1px solid Green;
+padding: 0.5em;
+width: 20em;
+float: right;
+}
+
+p.neat
+{
+display: none;
+clear: both;
+margin: 1em 0;
+padding: 1em 15px;
+background: #0F67A1;
+color: #fff;
+}
+</style>
+<!--CSS 程式碼到此結束-->
+<!-------JavaScript 程式開始-------->
+ <script type="text/javascript" src="../jquery.js">
+        </script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.content').addClass('content-set');
+  $('#author').addClass('author-set');
+  
+  if ($('#textfield').html().length==0){
+        $('#textfield').html('結構講解');
+  }
+  
+  $("p.neat").show("slow");
+});
+
+</script>
+<!-------JavaScript 程式結束-------->
+</HEAD>
+<BODY>
+
+<div id="container">
+<div class="content" id="author">by Ramon</div>
+<div class="content" id="textfield"></div>
+<div class="content" id="jQueryTest"><p class="neat">我們可將 jQuery 程式分成三個部分：HTML、CSS、JavaScript ... 。</p></div>
+</div>
+</BODY>
