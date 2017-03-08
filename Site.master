@@ -1,0 +1,211 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="zh">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> 歡迎光臨國立嘉義大學 社團服務網站</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style type="text/css">
+      .navbar-item {
+        font-size:x-large;
+       font-family: impact;
+      }
+
+      .form-textbox {
+
+height: 500px !important;
+
+width: 1000px !important;
+
+font-size: 14px !important;
+
+}
+     </style>
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--如需了解 ScriptManager 的搭配指令碼，請參閱 http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--架構指令碼--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--網站指令碼--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <!-- class="navbar navbar-inverse navbar-fixed-top"-->
+        <div class="navbar navbar-default" style="background-color:#C93;">
+            <div class="container" style="background-color:#eac06c;">
+                <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center" background="/images/color_001.gif" summary="網站上方宣告及分眾主框架">
+                        <tr>
+                        <td width="450" rowspan="2" align="right" valign="middle">
+                        <!-- 學校校徽及中英文名稱之圖檔 Form 校務行政系統(https://web085004.adm.ncyu.edu.tw) -->
+                        <img src="images/logo_ncyu_header.gif" alt="LOGO" longdesc="ncyu_logo" />
+                        </td>
+                        <td width="350" align="right" valign="middle">
+                          <font face="微軟正黑體" size="5"><a runat="server" href="http://www.google.com"><strong>社   團   服   務   網   站</strong></a> </font>	
+                        </td>
+                        <!-- 空格 --><td width="200">&nbsp;</td>
+                     
+                        </tr>
+                    </table>
+                <div>
+                   <%-- <asp:MultiView ID="MultiView1" runat="server">
+                        <asp:View ID="AdminView" runat="server">
+                        I Am Admin
+                        </asp:View>
+                        <asp:View ID="GirlView" runat="server">
+                        I Am A Girl
+                        </asp:View>
+                        <asp:View ID="BoyView" runat="server">
+                        I Am A Boy
+                        </asp:View>
+                        <asp:View ID="DadView" runat="server">
+                        I Am A Dad
+                        </asp:View>
+                    </asp:MultiView>--%>
+                </div>
+                <div class="container"  style="background-color:#fae5bb;">
+                    <asp:LoginView runat="server" id="LoginView1" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                             <ul class="nav navbar-nav navbar-left">
+                                <li><a runat="server" href="~/"><font color="#000000" face="標楷體" size="5">首頁</font></a></li>
+                                <li><a runat="server" href="~/GroupData"><font color="#000000" face="標楷體" size="5">社團資料</font></a></li>
+                                <li><a runat="server" href="~/Contact"><font color="#000000" face="標楷體" size="5">社團媒合</font></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register"><font color="#000000" face="標楷體" size="5">人員註冊</font></a></li>
+                                <li><a runat="server" href="~/Account/GroupRegister"><font color="#000000" face="標楷體" size="5">社團註冊</font></a></li>
+                                <li><a runat="server" href="~/Account/Login"><font color="#000000" face="標楷體" size="5">登入</font></a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <asp:MultiView ID="MultiView1" runat="server">
+                                <asp:View ID="SuperAdminView" runat="server">
+                                   <ul class="nav navbar-nav navbar-left">
+                                        <li><a runat="server" href="~/"><font color="#000000" face="標楷體" size="5">首頁</font></a></li>
+                                        <li><a runat="server" href="~/GroupData"><font color="#000000" face="標楷體" size="5">社團資料</font></a></li>
+                                        <li><a runat="server" href="~/Contact"><font color="#000000" face="標楷體" size="5">社團媒合</font></a></li>
+                                        <li><a runat="server" href="~/ContactData"><font color="#000000" face="標楷體" size="5">媒合資料查詢</font></a></li>
+                                         <li><a runat="server" href="~/GroupDataEdit"><font color="#000000" face="標楷體" size="5">社團資料編輯</font></a></li>
+                                         <li><a runat="server" href="~/Account/MenuEdit"><font color="#000000" face="標楷體" size="5">選單編輯</font></a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="登出" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
+                                    </ul>
+                                </asp:View>
+                                <asp:View ID="GroupAdminView" runat="server">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li><a runat="server" href="~/"><font color="#000000" face="標楷體" size="5">首頁</font></a></li>
+                                        <li><a runat="server" href="~/GroupData"><font color="#000000" face="標楷體" size="5">社團資料</font></a></li>
+                                        <li><a runat="server" href="~/GroupDataEdit"><font color="#000000" face="標楷體" size="5">社團資料編輯</font></a></li>
+                                        <li><a runat="server" href="~/Contact"><font color="#000000" face="標楷體" size="5">社團媒合</font></a></li>
+                                         <li><a runat="server" href="~/ContactData"><font color="#000000" face="標楷體" size="5">媒合資料查詢</font></a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="登出" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
+                                    </ul>
+                                </asp:View>
+                                <asp:View ID="UserView1" runat="server">
+                                    <ul class="nav navbar-nav navbar-left">
+                                        <li><a runat="server" href="~/"><font color="#000000" face="標楷體" size="5">首頁</font></a></li>
+                                        <li><a runat="server" href="~/GroupData"><font color="#000000" face="標楷體" size="5">社團資料</font></a></li>
+                                        <li><a runat="server" href="~/Contact"><font color="#000000" face="標楷體" size="5">社團媒合</font></a></li>
+                                        <li><a runat="server" href="~/ContactData"><font color="#000000" face="標楷體" size="5">媒合資料查詢</font></a></li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>!</a></li>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="登出" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
+                                    </ul>
+                                </asp:View>
+                                <asp:View ID="UserView2" runat="server">
+                                I Am A User
+                                </asp:View>
+                            </asp:MultiView>
+
+
+                             
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                    <div style="background-color:#C93;">
+                        <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center" background="/images/color_001.gif" summary="網站下方宣告主框架">
+                            <tr>
+                            <!-- 空格 --><td width="20">&nbsp;</td>
+                            <td width="80" align="center" valign="middle">
+                            <!-- 連結: Goto NCYU WebSite --><a href="http://www.ncyu.edu.tw/"  target="_blank">
+                            <!-- 圖檔: NCYU QR-Code --><img src="images/ncyu_qr.png" alt="QRcode" width="60" border="0" align="absmiddle" />
+                            </a>
+                            </td>
+                            <td width="580" align="left" valign="middle"><!-- 版權所有宣告區 --><br />
+                            國立嘉義大學　版權所有　Copyright &copy; 2008 All Rights Reserved.&nbsp;
+                            [<a href="print.aspx?table_name=list&sn=52679&site_content_sn=20706" target="_blank" title="本校四校區分佈地圖(開新視窗)">MAP</a>]<br />
+                            60004 嘉義市鹿寮里學府路300號　TEL: 05-2717000　FAX: 05-2717095<br />
+                            <!-- 蘭潭校區：60004 嘉義市鹿寮里學府路300號｜民雄校區：62103 嘉義縣民雄鄉文隆村85號<br /> -->
+                            <!-- 林森校區：60074 嘉義市林森東路151號｜新民校區：60054 嘉義市新民路580號<br /> -->
+                            建議使用 IE 8.0 以上瀏覽器瀏覽，最佳瀏覽解析度為1024*768<br />
+                            <!-- 暫不使用: 建議使用IE8.0以上瀏覽器瀏覽，最佳瀏覽解析度為1280*1024<br /> -->
+                            <!-- 暫不使用: 建議使用 IE 9.0 (或更新版本)、 Firefox、Google Chrome 等新式瀏覽器瀏覽，以獲得最佳瀏覽效果<br /> -->
+                            <!-- 無障礙導覽磚 --><a accesskey="D" title="下方導覽連結區" href="#">:::</a>&nbsp;
+                            [<a href="http://www.ncyu.edu.tw/newsite/privates.aspx" target="_blank" title="隱私權政策(開新視窗)">隱私權政策</a>]
+                            [<a href="http://www.ncyu.edu.tw/newsite/safeindex.aspx" target="_blank" title="網路安全政策(開新視窗)">網路安全政策</a>]
+                            [<a href="http://www.ncyu.edu.tw/indexold.aspx" target="_blank" title="回舊版網站(開新視窗)">回舊版網站</a>]
+                            [<a href="http://www.ncyu.edu.tw/newsite/" target="_self" title="回首頁(同一視窗)">回首頁</a>]
+                            <br />&nbsp;&nbsp;&nbsp;<br />
+                            </td>
+                            <td width="200" align="right" valign="middle"><!-- 各類標章置放區 -->
+                            <!-- <a href="http://www.handicap-free.nat.gov.tw/Applications/Detail?category=20140707111321" target="_blank" title="無障礙網站(開新視窗)">
+                            <img src="/images/aplus.jpg" alt="A+無障礙標章" width="88" height="31" border="0" />
+                            </a> -->
+                            <a href="http://www.gov.tw/" target="_blank" title="我的E政府網站(開新視窗)">
+                            <img src="images/intro_ban01.gif" alt="GOV標章" width="43" height="44" border="0" />
+                            </a>
+                            </td>
+                            <td width="120" align="center" valign="middle">
+                            <!-- 圖檔: NCYU Logo --><img src="images/logo_ncyu_footer.gif" alt="NCYU Logo" width="90" height="90" border="0" align="absmiddle" />
+                            </td>
+                            </tr>
+                            </table>                         <%--  <p>&copy; <%: DateTime.Now.Year %> - 國立嘉義大學 社團服務網站</p>--%>
+                </div>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
